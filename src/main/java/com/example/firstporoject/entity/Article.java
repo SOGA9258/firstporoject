@@ -1,6 +1,7 @@
 package com.example.firstporoject.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 @Entity
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
+@Getter
 public class Article {
 
     @Id
@@ -23,6 +26,7 @@ public class Article {
 
     @Column
     private  String content;
+
 
 
 }

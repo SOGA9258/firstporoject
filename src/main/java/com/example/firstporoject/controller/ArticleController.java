@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.rmi.MarshalledObject;
 import java.util.List;
@@ -86,12 +87,13 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable long id, RedirectAttributes rttr) {
 
         Article target= articleRepository.findById(id).orElse(null);
 
         if(target != null) {
             articleRepository.delete(target);
+            rttr.addFlashAttribute("msg","삭제가 완료되었습니다");
         }
 
         return "redirect:/articles";
